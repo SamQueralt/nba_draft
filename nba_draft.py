@@ -45,7 +45,7 @@ st.text("NBA Draft Scouting 2024")
 sel_pos = st.selectbox('Positions', ['All', 'PG', 'SG', 'SF', 'PF', 'C'], placeholder='All')
 
 if sel_pos != 'All':
-    filtered_sam = sam[sam['Pos'].str.contains(sel_pos, case=False)]
+    filtered_sam = sam[sam['Pos'].str.contains(sel_pos, case=False)].reset_index()
 else:
     filtered_sam = sam
 
@@ -69,7 +69,7 @@ with col1:
         fg = row['FG%']
         p3 = row['3P%']
         ft = row['FT%']
-        ftr = row['FTR']
+        espn = row['ESPN']
         ceil = row['Ceiling']
         floor = row['Floor']
         desc = row['Description']
@@ -93,7 +93,7 @@ with col1:
         with col13:
             st.code(f"{fg} FG%\n{p3} 3P%\n{ft} FT%")
 
-
+        st.markdown(f"**ESPN Big Board Rank: {espn}**")
         st.caption(desc)
         
 with col2:
@@ -114,7 +114,7 @@ with col2:
         fg = row['FG%']
         p3 = row['3P%']
         ft = row['FT%']
-        ftr = row['FTR']
+        espn = row['ESPN']
         ceil = row['Ceiling']
         floor = row['Floor']
         desc = row['Description']
@@ -138,7 +138,7 @@ with col2:
         with col23:
             st.code(f"{fg} FG%\n{p3} 3P%\n{ft} FT%")
 
-
+        st.markdown(f"**ESPN Big Board Rank: {espn}**")
         st.caption(desc)
         
         
