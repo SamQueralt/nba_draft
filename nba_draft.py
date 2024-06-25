@@ -3,8 +3,11 @@
 import streamlit as st
 import pandas as pd
 
-sam = pd.read_excel('nba_draft.xlsx')
-# adam = pd.read...
+stats = pd.read_pickle('stats.pkl')
+sam = pd.read_pickle('sam.pkl')
+# adam = pd.read_pickle('')
+
+sam = pd.merge(sam, stats, on='Name')
 
 ## sort by rating
 sam = sam.sort_values(by = 'Rating', ascending=False).reset_index()
