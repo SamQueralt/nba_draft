@@ -42,7 +42,7 @@ st.set_page_config(
 
 st.text("NBA Draft Scouting 2024")
 
-sel_pos = st.selectbox('Positions', ['All', 'PG', 'SG', 'SF', 'PF', 'C'], 0)
+sel_pos = st.selectbox('Positions', ['All', 'PG', 'SG', 'SF', 'PF', 'C'], placeholder='All')
 
 if sel_pos != 'All':
     filtered_sam = sam[sam['Pos'].str.contains(sel_pos, case=False)]
