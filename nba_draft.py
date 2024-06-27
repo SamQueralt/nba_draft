@@ -2,6 +2,7 @@
 
 import streamlit as st
 import pandas as pd
+import numpy as np
 
 def interpolate_color(rating, start_color, end_color):
     if rating < 50:
@@ -76,19 +77,21 @@ with col1:
         draft = row['Draft']
 
         if draft % 10 == 1:
-            draft = f"{draft}st"
+            draft = f"**Drafted {int(draft)}st overall**"
         elif draft % 10 == 2:
-            draft = f"{draft}nd"
+            draft = f"**Drafted {int(draft)}nd overall**"
         elif draft % 10 == 3:
-            draft = f"{draft}rd"
+            draft = f"**Drafted {int(draft)}rd overall**"
+        elif np.isnan(draft):
+            draft = "**Undrafted**"
         else:
-            draft = f"{draft}th"
+            draft = f"**Drafted {int(draft)}th overall**"
 
         color = interpolate_color(rating, start_color, end_color)
 
         st.markdown(f"""
             <h3>{rank}. {name}, {team}:
-                <span style='color:{color};'>{rating}</span>
+                <span style='color:{color};'>{str(rating)}</span>
             </h3>
             """, unsafe_allow_html=True)
         
@@ -103,7 +106,7 @@ with col1:
         with col13:
             st.code(f"{fg} FG%\n{p3} 3P%\n{ft} FT%")
 
-        st.markdown(f"**Drafted {draft} overall**")
+        st.markdown(draft)
         st.markdown(f"**ESPN Big Board Rank: {espn}**")
         st.caption(desc)
         
@@ -144,7 +147,7 @@ with col2:
 
         st.markdown(f"""
             <h3>{rank}. {name}, {team}:
-                <span style='color:{color};'>{rating}</span>
+                <span style='color:{color};'>{str(rating)}</span>
             </h3>
             """, unsafe_allow_html=True)
         
@@ -158,7 +161,7 @@ with col2:
 
         with col23:
             st.code(f"{fg} FG%\n{p3} 3P%\n{ft} FT%")
-            
+
         st.markdown(f"**Drafted {draft} overall**")
         st.markdown(f"**ESPN Big Board Rank: {espn}**")
         st.caption(desc)
