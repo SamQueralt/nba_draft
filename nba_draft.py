@@ -73,6 +73,16 @@ with col1:
         ceil = row['Ceiling']
         floor = row['Floor']
         desc = row['Description']
+        draft = row['Draft']
+
+        if draft % 10 == 1:
+            draft = f"{draft}st"
+        elif draft % 10 == 2:
+            draft = f"{draft}nd"
+        elif draft % 10 == 3:
+            draft = f"{draft}rd"
+        else:
+            draft = f"{draft}th"
 
         color = interpolate_color(rating, start_color, end_color)
 
@@ -93,6 +103,7 @@ with col1:
         with col13:
             st.code(f"{fg} FG%\n{p3} 3P%\n{ft} FT%")
 
+        st.markdown(f"**Drafted {draft} overall**")
         st.markdown(f"**ESPN Big Board Rank: {espn}**")
         st.caption(desc)
         
@@ -118,6 +129,16 @@ with col2:
         ceil = row['Ceiling']
         floor = row['Floor']
         desc = row['Description']
+        draft = row['Draft']
+
+        if draft % 10 == 1:
+            draft = f"{draft}st"
+        elif draft % 10 == 2:
+            draft = f"{draft}nd"
+        elif draft % 10 == 3:
+            draft = f"{draft}rd"
+        else:
+            draft = f"{draft}th"
 
         color = interpolate_color(rating, start_color, end_color)
 
@@ -137,7 +158,8 @@ with col2:
 
         with col23:
             st.code(f"{fg} FG%\n{p3} 3P%\n{ft} FT%")
-
+            
+        st.markdown(f"**Drafted {draft} overall**")
         st.markdown(f"**ESPN Big Board Rank: {espn}**")
         st.caption(desc)
         
