@@ -77,9 +77,15 @@ with col1:
         draft = row['Draft']
 
         if draft % 10 == 1:
-            draft = f"**Drafted {int(draft)}st overall**"
+            if draft == 11:
+                draft = f"**Drafted {int(draft)}th overall**"
+            else:
+                draft = f"**Drafted {int(draft)}st overall**"
         elif draft % 10 == 2:
-            draft = f"**Drafted {int(draft)}nd overall**"
+            if draft == 12:
+                draft = f"**Drafted {int(draft)}th overall**"
+            else:
+                draft = f"**Drafted {int(draft)}nd overall**"
         elif draft % 10 == 3:
             draft = f"**Drafted {int(draft)}rd overall**"
         elif np.isnan(draft):
@@ -135,13 +141,21 @@ with col2:
         draft = row['Draft']
 
         if draft % 10 == 1:
-            draft = f"{draft}st"
+            if draft == 11:
+                draft = f"**Drafted {int(draft)}th overall**"
+            else:
+                draft = f"**Drafted {int(draft)}st overall**"
         elif draft % 10 == 2:
-            draft = f"{draft}nd"
+            if draft == 12:
+                draft = f"**Drafted {int(draft)}th overall**"
+            else:
+                draft = f"**Drafted {int(draft)}nd overall**"
         elif draft % 10 == 3:
-            draft = f"{draft}rd"
+            draft = f"**Drafted {int(draft)}rd overall**"
+        elif np.isnan(draft):
+            draft = "**Undrafted**"
         else:
-            draft = f"{draft}th"
+            draft = f"**Drafted {int(draft)}th overall**"
 
         color = interpolate_color(rating, start_color, end_color)
 
@@ -162,9 +176,6 @@ with col2:
         with col23:
             st.code(f"{fg} FG%\n{p3} 3P%\n{ft} FT%")
 
-        st.markdown(f"**Drafted {draft} overall**")
+        st.markdown(draft)
         st.markdown(f"**ESPN Big Board Rank: {espn}**")
         st.caption(desc)
-        
-        
-        
