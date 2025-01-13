@@ -28,12 +28,14 @@ end_color = '#29a393'    # Green
 
 stats = pd.read_pickle('stats.pkl')
 sam = pd.read_pickle('sam.pkl')
-# adam = pd.read_pickle('')
+adam = pd.read_pickle('adam.pkl')
 
 sam = pd.merge(sam, stats, on='Name')
+adam = pd.merge(adam, stats, on='Name')
 
 ## sort by rating
 sam = sam.sort_values(by = 'Rating', ascending=False).reset_index()
+adam = adam.sort_values(by = 'Rating', ascending=False).reset_index()
 
 st.set_page_config(
      page_title='NBA Draft 2024',
@@ -47,8 +49,10 @@ sel_pos = st.selectbox('Positions', ['All', 'PG', 'SG', 'SF', 'PF', 'C'], placeh
 
 if sel_pos != 'All':
     filtered_sam = sam[sam['Pos'].str.contains(sel_pos, case=False)].reset_index()
+    filtered_adam = adam[adam['Pos'].str.contains(sel_pos, case=False)].reset_index()
 else:
     filtered_sam = sam
+    filtered_adam = adam
 
 col1, col2 = st.columns(2)
 
@@ -118,7 +122,7 @@ with col1:
         
 with col2:
     st.header("Adam")
-    for index, row in filtered_sam.iterrows():
+    for index, row in filtered_adam.iterrows():
         # Name	Rating	Team	Ht	Wt	Age	Pos	Pts	Reb	Ast	FG%	3P%	FT%	FTR	Ceiling	Floor	Description
         rank = index + 1
         name = row['Name']
